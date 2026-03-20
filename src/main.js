@@ -22,15 +22,22 @@ document.querySelector('#app').innerHTML = `
           alt=""
         />
         <p class="bio__lead">
-          Breve presentazione accanto al ritratto: sostituisci questo testo con il
-          tuo nome, il tuo ruolo e ciò che ti sta a cuore. L’immagine è in alto a
-          sinistra così il testo può avvolgerla naturalmente, come in un profilo
-          stampato.
+          Giuseppe Montalbano nasce in Sicilia, a Milazzo, una terra che gli insegna
+          presto il valore della memoria e delle storie tramandate a voce. Tra il
+          mare, i vicoli antichi e la vita quotidiana del suo paese, matura uno
+          sguardo narrativo capace di cogliere i dettagli che fanno epoca.
         </p>
         <p>
-          Aggiungi un secondo paragrafo per il contesto, i progetti in corso o come
-          contattarti. Quando vuoi, sostituisci <code>public/portrait.svg</code> con
-          una foto vera.
+          Autore di libri che uniscono ritmo romanzesco e rigore documentale,
+          Giuseppe scrive storie incredibili ma storicamente accurate. Ogni pagina
+          nasce da ricerca, fonti e testimonianze: la fantasia serve a dare respiro
+          ai personaggi, mentre la verità storica resta il suo punto fermo.
+        </p>
+        <p>
+          Quando non è immerso tra archivi e manoscritti, torna ai sapori di casa:
+          la sua passione dichiarata è la pasta con le sarde, piatto simbolo della
+          sua Sicilia. Nel suo lavoro, come in cucina, cerca sempre lo stesso
+          equilibrio: identità, sostanza e autenticità.
         </p>
       </article>
     </section>

@@ -7,8 +7,8 @@
   /* Grana fine (speckle) + grana larga: effetto carta / fibra */
   --grain-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.12' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.62'/%3E%3C/svg%3E");
   --grain-soft: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.48' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='0.55'/%3E%3C/svg%3E");
-  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-  --sans: 'Source Sans 3', system-ui, sans-serif;
+  --serif: 'Special Elite', 'Courier New', Courier, monospace;
+  --sans: 'Special Elite', 'Courier New', Courier, monospace;
 
   font-family: var(--sans);
   font-size: 1.05rem;
