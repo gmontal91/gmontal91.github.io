@@ -4,7 +4,9 @@
   --ink-muted: rgba(240, 225, 186, 0.72);
   --ink-faint: rgba(240, 225, 186, 0.38);
   --accent: rgba(240, 225, 186, 0.12);
-  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  /* Grana fine (speckle) + grana larga: effetto carta / fibra */
+  --grain-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.12' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='0.62'/%3E%3C/svg%3E");
+  --grain-soft: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.48' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='0.55'/%3E%3C/svg%3E");
   --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
   --sans: 'Source Sans 3', system-ui, sans-serif;
 
@@ -12,7 +14,6 @@
   font-size: 1.05rem;
   line-height: 1.65;
   color: var(--ink);
-  background-color: var(--paper);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -25,10 +26,31 @@
   box-sizing: border-box;
 }
 
+html {
+  min-height: 100%;
+  background-color: var(--paper);
+}
+
 body {
   margin: 0;
   min-height: 100dvh;
   position: relative;
+  isolation: isolate;
+  background-color: var(--paper);
+  /* Carta: aloneggiamento chiaro + vinco in ombra, poi due overlay di grana semitrasparenti */
+  background-image:
+    linear-gradient(
+      165deg,
+      rgba(252, 246, 232, 0.07) 0%,
+      transparent 42%,
+      rgba(5, 18, 12, 0.22) 100%
+    ),
+    var(--grain-fine),
+    var(--grain-soft);
+  background-size: 100% 100%, 88px 88px, 208px 208px;
+  background-repeat: no-repeat, repeat, repeat;
+  background-attachment: fixed;
+  background-blend-mode: normal, overlay, soft-light;
 }
 
 body::before {
@@ -37,25 +59,14 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.28;
+  /* Velo extra: grana leggermente spostata per evitare ripetizioni troppo regolari */
+  opacity: 0.35;
   mix-blend-mode: overlay;
-  background-image: var(--noise);
-  background-size: 200px 200px;
+  background-image: var(--grain-fine);
+  background-size: 112px 112px;
   background-repeat: repeat;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.06;
-  background-image: var(--noise);
-  background-size: 120px 120px;
-  background-repeat: repeat;
-  mix-blend-mode: soft-light;
-  transform: rotate(1.5deg) scale(1.02);
+  background-attachment: fixed;
+  transform: rotate(0.8deg) scale(1.03);
 }
 
 #app {
