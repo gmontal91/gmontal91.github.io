@@ -18,9 +18,13 @@ npm run preview
 
 ## GitHub Pages
 
-1. Repo **Settings → Pages**: set **Source** to **GitHub Actions** (recommended).
-2. Push to `main` or `master`; the workflow in `.github/workflows/deploy-pages.yml` builds and deploys `dist/`.
+1. Repo **Settings → Pages** → **Build and deployment** → **Source**: seleziona **GitHub Actions** (non *Deploy from a branch* sulla root del repo).
+2. Fai push su `main` o `master`, oppure avvia manualmente il workflow **Actions → Deploy to GitHub Pages → Run workflow**. Il workflow esegue `npm run build` e carica solo il contenuto di **`dist/`**.
 
-If your site is `https://<user>.github.io/<repo>/` and anything breaks, set `base` in `vite.config.js` to `'/<repo>/'` instead of `'./'`.
+### Se vedi errori MIME su `/src/style.css` o `/src/assets/...`
+
+Significa che Pages sta servendo i **sorgenti** Vite (cartella del repo) invece della **build**. In quel caso il browser prova a importare file raw come moduli ES e blocca CSS/SVG. **Soluzione:** imposta la sorgente Pages su **GitHub Actions** e attendi un deploy riuscito (oppure pubblica manualmente il contenuto di `dist/` nella branch/target corretti).
+
+Sito in sottocartella `https://<user>.github.io/<repo>/`: in `vite.config.js` imposta `base: '/<repo>/'` (sostituisci `<repo>` con il nome del repository).
 
 Replace copy in `src/main.js`, swap `public/portrait.svg` for a photo, update social `href`s, and connect the newsletter form to your provider (Buttondown, Mailchimp, etc.).

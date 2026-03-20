@@ -1,8 +1,12 @@
+# Pubblica solo la cartella dist/ (build Vite). NON usare come sorgente Pages
+# la branch principale sulla root del repo: servirebbe index.html che punta a src/
+# e il browser non può importare .css/.svg come moduli ES → errori MIME.
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main, master]
+  workflow_dispatch:
 
 permissions:
   contents: read
