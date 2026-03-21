@@ -1,30 +1,33 @@
 # GMA landing
 
-Static landing page built with [Vite](https://vite.dev/), styled for GitHub Pages (`base: './'` so asset paths stay correct when hosted under a project URL).
+Sito statico: `index.html`, `styles.css`, cartella `assets/` (logo, ritratto). Nessun bundler: adatto a **GitHub Pages** anche con *Deploy from branch* sulla root del repo.
 
-## Develop
+## Modificare i contenuti
+
+- Testo e sezioni: `index.html`
+- Stili: `styles.css`
+- Logo: `assets/logo.svg` · Ritratto: `assets/portrait.svg` · Favicon: `favicon.svg`
+
+## Anteprima locale
+
+Apri `index.html` nel browser oppure, dalla cartella del progetto:
 
 ```bash
-npm install
-npm run dev
+python3 -m http.server 8080
 ```
 
-## Build
-
-```bash
-npm run build
-npm run preview
-```
+Poi visita `http://localhost:8080`.
 
 ## GitHub Pages
 
-1. Repo **Settings → Pages** → **Build and deployment** → **Source**: seleziona **GitHub Actions** (non *Deploy from a branch* sulla root del repo).
-2. Fai push su `main` o `master`, oppure avvia manualmente il workflow **Actions → Deploy to GitHub Pages → Run workflow**. Il workflow esegue `npm run build` e carica solo il contenuto di **`dist/`**.
+**Opzione A — dalla branch (senza Actions)**  
+Settings → Pages → Source: branch `main`, cartella `/ (root)`. Assicurati che in root ci siano `index.html`, `styles.css`, `favicon.svg`, `.nojekyll` e `assets/`.
 
-### Se vedi errori MIME su `/src/style.css` o `/src/assets/...`
+**Opzione B — GitHub Actions**  
+Source: **GitHub Actions**. Il workflow copia i file statici in `_site/` e li pubblica (vedi `.github/workflows/deploy-pages.yml`).
 
-Significa che Pages sta servendo i **sorgenti** Vite (cartella del repo) invece della **build**. In quel caso il browser prova a importare file raw come moduli ES e blocca CSS/SVG. **Soluzione:** imposta la sorgente Pages su **GitHub Actions** e attendi un deploy riuscito (oppure pubblica manualmente il contenuto di `dist/` nella branch/target corretti).
+Sito in sottocartella `https://<user>.github.io/<repo>/`: in `index.html` aggiorna i percorsi (es. `./styles.css` → `./<repo>/styles.css`) oppure usa un `<base href="...">` coerente.
 
-Sito in sottocartella `https://<user>.github.io/<repo>/`: in `vite.config.js` imposta `base: '/<repo>/'` (sostituisci `<repo>` con il nome del repository).
+---
 
-Replace copy in `src/main.js`, swap `public/portrait.svg` for a photo, update social `href`s, and connect the newsletter form to your provider (Buttondown, Mailchimp, etc.).
+Modulo newsletter: messaggio di conferma gestito da uno script inline in `index.html`; collegalo al tuo provider quando sei pronto.

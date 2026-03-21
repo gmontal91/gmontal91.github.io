@@ -69,7 +69,7 @@ body::before {
   transform: rotate(0.8deg) scale(1.03);
 }
 
-#app {
+.page {
   position: relative;
   z-index: 1;
 }
